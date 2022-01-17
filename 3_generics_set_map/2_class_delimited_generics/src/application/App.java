@@ -16,14 +16,21 @@ public class App {
 
         String path = "C:\\workspace\\java-course\\3_generics_set_map\\1_class_introduction_generics\\2_class_delimited_generics\\in.txt";
 
-        try(BufferedReader br = new BufferedReader(new FileReader(path))){
-            
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+
             String line = br.readLine();
-            while(line != null){
+            while (line != null) {
                 String[] fields = line.split(",");
                 list.add(new Product(fields[0], Double.parseDouble(fields[1])));
                 line = br.readLine();
             }
 
+            Product x = CalculationServices.max(list);
+            System.out.println("MAX: ");
+            System.out.println(x);
+
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
         }
+    }
 }
